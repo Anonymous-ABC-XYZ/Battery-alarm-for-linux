@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 import playsound
 import psutil
 
-music = '/home/abc/Scripts/Battery/Battery-music.mp3'
+music = 'Battery-music-for-linux/Battery-music.mp3'
 i = 'play'
 
 
@@ -47,28 +47,15 @@ while True:
     hour = datetime.datetime.strftime(now, '%H')
     battery_check()
     if i == 'play':
-        if int(hour) > 15 and 0 < int(datetime.datetime.strftime(now, '%w')) < 5:
-            if percent >= 80 and plugged == "Plugged In":
-                pop_up()
-                if i == 'play':
-                    os.system("""notify-send -a "Battery Above 80%" -i "battery" "Remove the charger, your battery is above 80%" """)
-                    playsound.playsound(music)
-            elif percent <= 30 and plugged == "Not Plugged In":
-                pop_up()
-                if i == 'play':
-                    os.system(
-                        """notify-send -a "Battery below 30%" -i "battery" "Plug in the charger, your battery is below 30%" """)
-                    playsound.playsound(music)
-        elif int(datetime.datetime.strftime(now, '%w')) == 0 or int(datetime.datetime.strftime(now, '%w')) == 6:
-            if percent >= 80 and plugged == "Plugged In":
-                pop_up()
-                if i == 'play':
-                    os.system(
-                        """notify-send -a "Battery Above 30%" -i "battery" "Remove the charger, your battery is above 80%" """)
-                    playsound.playsound(music)
-            elif percent <= 30 and plugged == "Not Plugged In":
-                pop_up()
-                if i == 'play':
-                    os.system(
-                        """notify-send -a "Battery below 30%" -i "battery" "Plug in the charger, your battery is below 30%" """)
-                    playsound.playsound(music)
+        if percent >= 80 and plugged == "Plugged In":
+            pop_up()
+            if i == 'play':
+                os.system("""notify-send -a "Battery Above 80%" -i "battery" "Remove the charger, your battery is above 80%" """)
+                playsound.playsound(music)
+        elif percent <= 30 and plugged == "Not Plugged In":
+            pop_up()
+            if i == 'play':
+                os.system(
+                    """notify-send -a "Battery below 30%" -i "battery" "Plug in the charger, your battery is below 30%" """)
+                playsound.playsound(music)
+       
